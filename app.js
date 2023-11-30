@@ -162,9 +162,10 @@ nextq2.addEventListener('click', function() {
     createMemoryQuestion();
 
 })
+const optionsContainer = document.getElementById('options-container');
+const display_options = document.getElementById('display_options');
 const imageSrcs = ["./assets/question2pic1.png", "./assets/question2pic2.png", "./assets/question2pic3.png","./assets/question2pic4.png", "./assets/question2pic5.png", "./assets/question2pic6.png", "./assets/question2pic7.png", "./assets/question2pic8.png"];
 function createMemoryQuestion(){
-    const optionsContainer = document.getElementById('options-container');
     const question2txt = document.createElement('p');
     question2txt.textContent = 'Please select the correct orientation of this image?';
     question2txt.classList.add("instructions");
@@ -176,7 +177,6 @@ function createMemoryQuestion(){
     const imageIndex = Math.floor(Math.random()*8);
     const image = images[imageIndex];
     const correctOrientaiton = correctOrientaitons[imageIndex];
-
     orientations.forEach((orientation) =>{
         const optionImage = document.createElement('img');
         optionImage.src = imageSrcs[imageIndex];
@@ -185,16 +185,37 @@ function createMemoryQuestion(){
         optionImage.style.transform = `rotate(${getRotationDegrees(orientation)}deg)`;
         optionImage.style.maxHeight = "100px";
         optionImage.addEventListener('click', () => checkAnswer(orientation, correctOrientaiton));
-        optionsContainer.appendChild(optionImage);
+        display_options.appendChild(optionImage);
         
     })
 
     function checkAnswer(selectedOrientation, correctOrientation) {
         if (selectedOrientation === correctOrientation) {
             console.log('Correct! The image is in the correct orientation.');
+            optionsContainer.innerHTML = '';
+            startQuestion3();
+
         } else {
             console.log('Incorrect. Please try again.');
+            optionsContainer.innerHTML = '';
+            startQuestion3();
         }
+    }
+
+    const nextq3 = document.getElementById('nextq3');
+    const question3div = document.getElementById('question3');
+    function startQuestion3(){
+        question3div.style.display = 'block';
+    }
+
+
+    nextq3.addEventListener('click', function() {
+        startQuestion4();
+    })
+
+    function startQuestion4(){
+        question3div.innerHTML = '';
+
     }
 
 }

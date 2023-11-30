@@ -107,3 +107,14 @@
     align-items: center;
     flex-direction: column;
 }
+
+#options-container{
+    display: flex;
+    justify-content: center;
+    flex-direction:column-reverse;
+}
+#display_options{
+    display: flex;
+    justify-content: center;
+}
+
