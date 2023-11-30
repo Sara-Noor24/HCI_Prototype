@@ -12,6 +12,9 @@ pairwords1_testwords = ["lake", "dust", "house", "dog","mat", "book", "soup", "j
 pairwords1_answers = ["plug", "flight", "table", "leaf","drink", "coffee", "straw", "pen", "clip", "tree"]
 pairwords2_testwords = ["glass", "phone", "chair", "card","bird", "school ", "shoe", "sudan", "desk", "lemon"]
 pairwords2_answers = ["napkin", "flight", "bag", "spoon","ring", "clip", "pen", "coat", "cracker", "tree"]
+
+
+
 // random number to choose from list one or list 2
 const randomNumber = Math.floor(Math.random() * 2) + 1;
 
@@ -98,9 +101,85 @@ function checkAnswer(answer, correctAnswer) {
     questionsCompleted++;
     if (questionsCompleted == 3){
         allContent.innerHTML = '';
+        startQuestion2();
+    }
+}
+const question2pic1 = document.getElementById('question2image1');
+const question2pic2 = document.getElementById('question2image2');
+const question2pic3 = document.getElementById('question2image3');
+const question2pic4 = document.getElementById('question2image4');
+const question2pic5 = document.getElementById('question2image5');
+const question2pic6 = document.getElementById('question2image6');
+const question2pic7 = document.getElementById('question2image7');
+const question2pic8 = document.getElementById('question2image8');
+const imageblock = document.getElementById('question2start');
+const images = [question2pic1,question2pic2, question2pic3, question2pic4, question2pic5, question2pic6, question2pic7, question2pic8];
+const orientations = ['upright', 'upside-down', 'rotated-left', 'rotated-right'];
+let correctOrientaitons = [];
+const question2begining = document.getElementById('question2start');
+
+function startQuestion2(){
+    for(let i = 0; i<images.length; i++){
+        const imageOrientation = orientations[Math.floor(Math.random() * orientations.length)];
+        images[i].style.transform  = `rotate(${getRotationDegrees(imageOrientation)}deg)`;
+        correctOrientaitons.push(imageOrientation);
+    }
+    imageblock.style.display = 'block';
+
+}
+function getRotationDegrees(orientation) {
+    switch (orientation) {
+        case 'upright':
+            return 0;
+        case 'upside-down':
+            return 180;
+        case 'rotated-left':
+            return 270;
+        case 'rotated-right':
+            return 90;
+        default:
+            return 0;
     }
 }
 
-function startQuestion2(){
+const nextq2 = document.getElementById('nextq2');
+
+nextq2.addEventListener('click', function() {
+    question2begining.innerHTML = '';
+    createMemoryQuestion();
+
+})
+const imageSrcs = ["./assets/question2pic1.png", "./assets/question2pic2.png", "./assets/question2pic3.png","./assets/question2pic4.png", "./assets/question2pic5.png", "./assets/question2pic6.png", "./assets/question2pic7.png", "./assets/question2pic8.png"];
+function createMemoryQuestion(){
+    const question2txt = document.createElement('p');
+    question2txt.textContent = 'Please select the correct orientation of this image?';
+    question2begining.appendChild(question2txt);
+    const br = document.createElement('br');
+    question2begining.appendChild(br);
+
+
+    const imageIndex = Math.floor(Math.random()*8);
+    const image = images[imageIndex];
+    const correctOrientaiton = correctOrientaitons[imageIndex];
+    const optionsContainer = document.getElementById('options-container');
+    orientations.forEach((orientation) =>{
+        const optionImage = document.createElement('img');
+        optionImage.src = imageSrcs[imageIndex];
+        optionImage.alt = orientation;
+        optionImage.className = "rotation-image";
+        optionImage.style.transform = `rotate(${getRotationDegrees(orientation)}deg)`;
+        optionImage.style.maxHeight = "100px";
+        optionImage.addEventListener('click', () => checkAnswer(orientation, correctOrientaiton));
+        optionsContainer.appendChild(optionImage);
+        
+    })
+
+    function checkAnswer(selectedOrientation, correctOrientation) {
+        if (selectedOrientation === correctOrientation) {
+            console.log('Correct! The image is in the correct orientation.');
+        } else {
+            console.log('Incorrect. Please try again.');
+        }
+    }
 
 }
