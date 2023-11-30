@@ -6,6 +6,8 @@ const pairwords1 = document.getElementById('pairwords1');
 const pairwords2 = document.getElementById('pairwords2');
 const nextq = document.getElementById('nextq');
 const allContent = document.getElementById('allContent');
+const questionnaire = document.getElementById('questionnaire');
+const startq1 = document.getElementById('startq1');
 //creating vaiables for question 1 - 3 (word/memory question)
 pairwords1_testwords = ["lake", "dust", "house", "dog","mat", "book", "soup", "jeep", "bottle", "water"]
 pairwords1_answers = ["plug", "flight", "table", "leaf","drink", "coffee", "straw", "pen", "clip", "tree"]
@@ -21,7 +23,11 @@ const randomNumber = Math.floor(Math.random() * 2) + 1;
 startButton.addEventListener('click', function() {
     // Remove all content from the container
     contentContainer.innerHTML = '';
+    questionnaire.style.display = 'block';
+});
 
+startq1.addEventListener('click', function(){
+    questionnaire.innerHTML = '';
     questionPageOne.style.display = 'block';
 
     if (randomNumber == 1){
@@ -31,8 +37,7 @@ startButton.addEventListener('click', function() {
         pairwords2.style.display = "block";
         nextq.style.display = "block";
     }
-
-});
+} )
 
 // action button to move on from list of words to first question
 nextq.addEventListener('click', function() {

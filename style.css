@@ -82,7 +82,7 @@
     flex-direction: column;
 }
 
-#startTestButton{
+.button{
     color: black;
     padding: 10px 20px;
     width: 400px;
@@ -94,7 +94,7 @@
     transition: background-color 0.3s;
 
 }
-#startTestButton:hover {
+.button:hover {
     background-color: #ef7838;
 }
 

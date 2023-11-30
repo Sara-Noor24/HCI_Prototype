@@ -9,8 +9,62 @@
     <div id="allContent">
         <div id="content">
             <h1 class="heading">Cognitive Analysis Test</h1>
-            <p>Please click the button below to start your cognative test.</p>
-            <button id="startTestButton">Start Test</button>
+            <p class="instructions">Please click the button below to start your cognative test.</p>
+            <button class="button" id="startTestButton">Start Test</button>
+        </div>
+        <div id="questionnaire" style="display: none;">
+            <h2 class="heading">Questionnaire:</h2>
+                <p class="instructions">Please answer the following questions before starting the test.</p>
+                <form action="/actionName">
+                    <label for="firstname">First Name:</label>
+                    <input type="text" id="firstname" name="firstname">
+                    <label for="middlename">Middle Name:</label>
+                    <input type="text" id="middlename" name="middlename">
+                    <label for="lastname">Last Name:</label>
+                    <input type="text" id="lastname" name="lastname">
+                </form>
+                <br><br>
+                <form action="/actionBirth">
+                    <label for="birthdate">Date of Birth:</label>
+                    <input type="date" id="birthdate" name="birthdate">
+                </form>
+                <br><br>
+                <form action="/actionGender">
+                    <label for="gender">Gender:</label>
+                    <select name="gender" id="gender">
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Nonbinary">Nonbinary</option>
+                        <option value="Rather">Rather Not Say</option>
+                    </select>
+                </form>
+                <p>Education:</p>
+                <form action="/actionMarital">
+                    <label for="maritalStatus">Marital Status:</label>
+                    <select name="maritalStatus" id="maritalStatus">
+                        <option value="single">Single</option>
+                        <option value="married">Married</option>
+                        <option value="divorced">Divorced</option>
+                        <option value="widowed">Widowed</option>
+                        <option value="other">Other</option>
+                    </select>
+                </form>
+                <br><br>
+                <form action="/actionRace">
+                    <label for="race">Race and Ethnicity:</label>
+                    <select name-="race" id="race">
+                        <option value="Asian">Asian</option>
+                        <option value="White">White</option>
+                        <option value="African American">African American</option>
+                        <option value="American Indian or Alaska Native">American Indian or Alaska Native</option>
+                        <option value="Blackother">Black Other</option>
+                        <option value="Hispanic">Hispanic/Latino</option>
+                    </select>
+                </form>
+            </body>
+            <br>
+            <br>
+            <button class="button" id="startq1">Next</button>
         </div>
         <div class="question-container" id="questionPage1" style="display: none;">
             <h1 class="heading">Memory Test</h2>
