@@ -162,8 +162,9 @@ nextq2.addEventListener('click', function() {
     createMemoryQuestion();
 
 })
+
+let questionsAnswered = 0;
 const optionsContainer = document.getElementById('options-container');
-const display_options = document.getElementById('display_options');
 const imageSrcs = ["./assets/question2pic1.png", "./assets/question2pic2.png", "./assets/question2pic3.png","./assets/question2pic4.png", "./assets/question2pic5.png", "./assets/question2pic6.png", "./assets/question2pic7.png", "./assets/question2pic8.png"];
 function createMemoryQuestion(){
     const question2txt = document.createElement('p');
@@ -177,6 +178,9 @@ function createMemoryQuestion(){
     const imageIndex = Math.floor(Math.random()*8);
     const image = images[imageIndex];
     const correctOrientaiton = correctOrientaitons[imageIndex];
+    const display_options = document.createElement('div');
+    optionsContainer.appendChild(display_options);
+    display_options.id = "display-options";
     orientations.forEach((orientation) =>{
         const optionImage = document.createElement('img');
         optionImage.src = imageSrcs[imageIndex];
@@ -192,13 +196,18 @@ function createMemoryQuestion(){
     function checkAnswer(selectedOrientation, correctOrientation) {
         if (selectedOrientation === correctOrientation) {
             console.log('Correct! The image is in the correct orientation.');
-            optionsContainer.innerHTML = '';
-            startQuestion3();
-
         } else {
             console.log('Incorrect. Please try again.');
+        }
+        questionsAnswered++;
+        console.log(questionsAnswered);
+        if (questionsAnswered == 3){
             optionsContainer.innerHTML = '';
             startQuestion3();
+        }else{
+            console.log("enetered if statement");
+            optionsContainer.innerHTML = '';
+            createMemoryQuestion();
         }
     }
 
