@@ -1,0 +1,105 @@
+.heading{
+    text-align: center;  
+    font-family: "Helvetica"; 
+    color: #ef7838;
+}
+
+#content{
+    margin-top: 6%;
+    text-align: center;
+}
+
+
+
+.instructions{
+    text-align: center;
+    font-size:x-large;
+    font-family: "Helvetica";
+    color: #ffcaae;
+}
+
+
+#nextq{
+    color: black;
+    padding: 10px 20px;
+    width: 400px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px;
+    border-color:#ef7838;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+#nextq2{
+    color: black;
+    padding: 10px 20px;
+    width: 400px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px;
+    border-color:#ef7838;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+#nextq2{
+    background-color: #ef7838;   
+}
+
+#nextq:hover{
+    background-color: #ef7838;   
+}
+
+.optionButton{
+    display: flex;
+}
+.questionWord{
+    font-size:x-large;
+    margin-left: 2%;
+    font-family:monospace;
+    color: #ef7838;
+}
+
+
+.optionButton {
+    color: black;
+    padding: 10px 20px;
+    width: 400px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px;
+    border-color:#ef7838;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-left: 4%;
+}
+
+.optionButton:hover {
+    background-color: #ef7838;
+}
+.button_container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#startTestButton{
+    color: black;
+    padding: 10px 20px;
+    width: 400px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px;
+    border-color:#ef7838;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+
+}
+#startTestButton:hover {
+    background-color: #ef7838;
+}
+
+.nextqbutton{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

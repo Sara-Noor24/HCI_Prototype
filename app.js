@@ -6,7 +6,6 @@ const pairwords1 = document.getElementById('pairwords1');
 const pairwords2 = document.getElementById('pairwords2');
 const nextq = document.getElementById('nextq');
 const allContent = document.getElementById('allContent');
-
 //creating vaiables for question 1 - 3 (word/memory question)
 pairwords1_testwords = ["lake", "dust", "house", "dog","mat", "book", "soup", "jeep", "bottle", "water"]
 pairwords1_answers = ["plug", "flight", "table", "leaf","drink", "coffee", "straw", "pen", "clip", "tree"]
@@ -47,6 +46,14 @@ nextq.addEventListener('click', function() {
         wordlist = pairwords2_testwords
         anslist = pairwords2_answers
     }
+
+
+    const prompt = document.createElement('p');
+    prompt.textContent = "Given the word below choose its correct pair.";
+    prompt.classList.add("instructions");
+    questionPageOne.appendChild(prompt);
+    const br = document.createElement('br');
+    questionPageOne.appendChild(br);
     generateWordPairQuestion(wordlist, anslist);
     generateWordPairQuestion(wordlist, anslist);
     generateWordPairQuestion(wordlist, anslist);
@@ -55,29 +62,29 @@ nextq.addEventListener('click', function() {
 
 
 //fucntion to generate question (format of questions 1-3)
+
 function generateWordPairQuestion(wordlist, answerList){
+    const button_container = document.createElement('div');
+    button_container.classList.add('button_container');
     const questionIndex = Math.floor(Math.random()*10);
     const randomWord = wordlist[questionIndex];
     console.log(randomWord, questionIndex);
-
-    const prompt = document.createElement('p');
-    prompt.textContent = "Given the word below choose its correct pair.";
-    contentContainer.appendChild(prompt);
-
+    const line = document.createElement('hr');
     //display the word being asked 
     const questionText = document.createElement('p');
     questionText.innerHTML = `<strong>${randomWord}</strong>`;
-    contentContainer.appendChild(questionText);
+    button_container.appendChild(line);
+    questionText.classList.add('questionWord');
+    button_container.appendChild(questionText);
     const correctAnswer = answerList[questionIndex];
 
-    const line = document.createElement('hr');
-    contentContainer.appendChild(line);
     const incorrectOptions = answerList
         .filter(word => word !== correctAnswer)
         .sort(() => Math.random() - 0.5)
         .slice(0,3);
 
     const options = [correctAnswer, ...incorrectOptions].sort(() => Math.random() - 0.5);
+
 
     for (let i = 0; i < options.length; i++){
         const space = document.createElement('p');
@@ -86,9 +93,10 @@ function generateWordPairQuestion(wordlist, answerList){
         button.innerHTML = `${options[i]}`;
         button.classList.add('optionButton');
         button.addEventListener('click', () => checkAnswer(options[i], correctAnswer));
-        contentContainer.appendChild(button);
-        contentContainer.appendChild(space);
+        button_container.appendChild(button);
+        button_container.appendChild(space);
     }
+        questionPageOne.appendChild(button_container);
 }
 let questionsCompleted = 0;
 //check if answer clicked is correct
@@ -151,17 +159,19 @@ nextq2.addEventListener('click', function() {
 })
 const imageSrcs = ["./assets/question2pic1.png", "./assets/question2pic2.png", "./assets/question2pic3.png","./assets/question2pic4.png", "./assets/question2pic5.png", "./assets/question2pic6.png", "./assets/question2pic7.png", "./assets/question2pic8.png"];
 function createMemoryQuestion(){
+    const optionsContainer = document.getElementById('options-container');
     const question2txt = document.createElement('p');
     question2txt.textContent = 'Please select the correct orientation of this image?';
-    question2begining.appendChild(question2txt);
+    question2txt.classList.add("instructions");
+    optionsContainer.appendChild(question2txt);
     const br = document.createElement('br');
-    question2begining.appendChild(br);
+    optionsContainer.appendChild(br);
 
 
     const imageIndex = Math.floor(Math.random()*8);
     const image = images[imageIndex];
     const correctOrientaiton = correctOrientaitons[imageIndex];
-    const optionsContainer = document.getElementById('options-container');
+
     orientations.forEach((orientation) =>{
         const optionImage = document.createElement('img');
         optionImage.src = imageSrcs[imageIndex];
