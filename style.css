@@ -26,7 +26,6 @@
     font-size: 16px;
     cursor: pointer;
     border: 2px;
-    border-color:#ef7838;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
@@ -37,11 +36,10 @@
     font-size: 16px;
     cursor: pointer;
     border: 2px;
-    border-color:#ef7838;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
-#nextq2{
+#nextq2:hover{
     background-color: #ef7838;   
 }
 
@@ -102,4 +100,10 @@
     align-items: center;
     display: flex;
     justify-content: center;
+}
+
+#questionnaire_qs{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
