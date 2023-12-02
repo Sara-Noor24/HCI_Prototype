@@ -97,6 +97,7 @@ function generateWordPairQuestion(wordlist, answerList){
         const button = document.createElement('button');
         button.innerHTML = `${options[i]}`;
         button.classList.add('optionButton');
+        button.style.marginLeft = '4%';
         button.addEventListener('click', () => checkAnswer(options[i], correctAnswer));
         button_container.appendChild(button);
         button_container.appendChild(space);
@@ -129,7 +130,6 @@ const imageblock = document.getElementById('question2start');
 const images = [question2pic1,question2pic2, question2pic3, question2pic4, question2pic5, question2pic6, question2pic7, question2pic8];
 const orientations = ['upright', 'upside-down', 'rotated-left', 'rotated-right'];
 let correctOrientaitons = [];
-const question2begining = document.getElementById('question2start');
 
 function startQuestion2(){
     for(let i = 0; i<images.length; i++){
@@ -138,6 +138,10 @@ function startQuestion2(){
         correctOrientaitons.push(imageOrientation);
     }
     imageblock.style.display = 'block';
+    imageblock.style.display = 'flex';
+    imageblock.style.justifyContent = 'center';
+    imageblock.style.flexDirection = 'column';
+    imageblock.style.textAlign = 'center';
 
 }
 function getRotationDegrees(orientation) {
@@ -158,12 +162,13 @@ function getRotationDegrees(orientation) {
 const nextq2 = document.getElementById('nextq2');
 
 nextq2.addEventListener('click', function() {
-    question2begining.innerHTML = '';
+    imageblock.innerHTML = '';
     createMemoryQuestion();
 
 })
 
 let questionsAnswered = 0;
+const br = document.createElement('br');
 const optionsContainer = document.getElementById('options-container');
 const imageSrcs = ["./assets/question2pic1.png", "./assets/question2pic2.png", "./assets/question2pic3.png","./assets/question2pic4.png", "./assets/question2pic5.png", "./assets/question2pic6.png", "./assets/question2pic7.png", "./assets/question2pic8.png"];
 function createMemoryQuestion(){
@@ -171,7 +176,6 @@ function createMemoryQuestion(){
     question2txt.textContent = 'Please select the correct orientation of this image?';
     question2txt.classList.add("instructions");
     optionsContainer.appendChild(question2txt);
-    const br = document.createElement('br');
     optionsContainer.appendChild(br);
 
 
@@ -188,12 +192,12 @@ function createMemoryQuestion(){
         optionImage.className = "rotation-image";
         optionImage.style.transform = `rotate(${getRotationDegrees(orientation)}deg)`;
         optionImage.style.maxHeight = "100px";
-        optionImage.addEventListener('click', () => checkAnswer(orientation, correctOrientaiton));
+        optionImage.addEventListener('click', () => checkAnswer2(orientation, correctOrientaiton));
         display_options.appendChild(optionImage);
         
     })
 
-    function checkAnswer(selectedOrientation, correctOrientation) {
+    function checkAnswer2(selectedOrientation, correctOrientation) {
         if (selectedOrientation === correctOrientation) {
             console.log('Correct! The image is in the correct orientation.');
         } else {
@@ -211,16 +215,68 @@ function createMemoryQuestion(){
         }
     }
 
-    const nextq3 = document.getElementById('nextq3');
+
+    const items = ["bell", "spoon", "ring", "cat", "can"]
+    const items_url = ["./assets/question3pic1.png","./assets/question3pic2.png","./assets/question3pic3.png","./assets/question3pic4.png","./assets/question3pic5.png"]
     const question3div = document.getElementById('question3');
+    const nextq3 = document.createElement('button');
     function startQuestion3(){
         question3div.style.display = 'block';
+        const prompt = document.createElement('p');
+        prompt.textContent = "Given the picture below choose the match.";
+        prompt.classList.add("instructions");
+        question3div.appendChild(prompt);
+        generateQuestion3();
+       
+        
     }
 
+    function generateQuestion3(){
+        const newquestionbox = document.createElement('div');
+        question3div.appendChild(newquestionbox);
+        newquestionbox.classList.add("newQuestionBox");
+        const randomIndex = Math.floor(Math.random()*5);
+        const correctItem = items[randomIndex];
+        const correctURL = items_url[randomIndex];
 
-    nextq3.addEventListener('click', function() {
-        startQuestion4();
-    })
+        const itemImage = document.createElement('img');
+        itemImage.src = correctURL;
+        itemImage.style.maxHeight = '150px';
+        newquestionbox.style.textAlign = 'center';
+        newquestionbox.appendChild(itemImage);
+        newquestionbox.appendChild(br)
+        newquestionbox.appendChild(br)
+
+        const wrongAnswers = items
+        .filter(word => word !== correctItem) // Exclude the correct answer
+        .sort(() => Math.random() - 0.5) // Shuffle the array
+        .slice(0, 3);
+
+        const optionsContainer2 = document.createElement('div');
+        optionsContainer2.id = 'optionscontainer2';
+        newquestionbox.appendChild(optionsContainer2);
+        const options = [correctItem, ...wrongAnswers].sort(() => Math.random() - 0.5);
+        options.forEach((option) => {
+            const button = document.createElement('button');
+            button.textContent = option;
+            button.classList.add('optionButton');
+            button.addEventListener('click', () => checkAnswer3(option, correctItem, newquestionbox));
+            optionsContainer2.appendChild(button);
+        });
+        newquestionbox.appendChild(br)
+        
+    }
+    let totalquestions3 = 0;
+
+    function checkAnswer3(selectedAnswer, correctAnswer, newQuestionBox) {
+        totalquestions3++;
+        if (totalquestions3 < 3){
+            newQuestionBox.innerHTML = '';
+            generateQuestion3();
+        }else{
+            startQuestion4();
+        }
+    }
 
     function startQuestion4(){
         question3div.innerHTML = '';
