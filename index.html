@@ -22,7 +22,7 @@
                 </form>
                 <br><br>
                 <form action="/actionBirth">
-                    <label for="birthdate">Date of Birth:</label>
+                    <label for="birthdate">Age:</label>
                     <input type="date" id="birthdate" name="birthdate">
                 </form>
                 <br><br>
@@ -47,17 +47,6 @@
                     </select>
                 </form>
                 <br><br>
-                <form action="/actionRace">
-                    <label for="race">Race and Ethnicity:</label>
-                    <select name-="race" id="race">
-                        <option value="Asian">Asian</option>
-                        <option value="White">White</option>
-                        <option value="African American">African American</option>
-                        <option value="American Indian or Alaska Native">American Indian or Alaska Native</option>
-                        <option value="Blackother">Black Other</option>
-                        <option value="Hispanic">Hispanic/Latino</option>
-                    </select>
-                </form>
             </div>
             <br>
             <br>
@@ -126,7 +115,9 @@
         <div id="question3" style="display: none;">
         </div>
 
-        <div id="question4"></div>
+        <div id="question4">
+            <p class="scoreTxt" id="scoreTxt" style="display: none;">Your Score is:</p>
+        </div>
         <link rel="stylesheet" href="style.css">
         <script defer src="app.js"></script>
 </body>

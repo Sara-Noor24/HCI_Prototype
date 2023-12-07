@@ -122,3 +122,17 @@
     flex-direction:column;
     align-items: center;
 }
+
+.score{
+    font-size: x-large;
+    text-align: center;  
+    font-family: "Helvetica"; 
+    color: #ef7838;
+
+}
+.scoreTxt{
+    font-size: x-large;
+    text-align: center;  
+    font-family: "Helvetica"; 
+    color: #ef7838;
+}

@@ -14,7 +14,7 @@ pairwords1_answers = ["plug", "flight", "table", "leaf","drink", "coffee", "stra
 pairwords2_testwords = ["glass", "phone", "chair", "card","bird", "school ", "shoe", "sudan", "desk", "lemon"]
 pairwords2_answers = ["napkin", "flight", "bag", "spoon","ring", "clip", "pen", "coat", "cracker", "tree"]
 
-
+let score = 0;
 
 // random number to choose from list one or list 2
 const randomNumber = Math.floor(Math.random() * 2) + 1;
@@ -109,6 +109,7 @@ let questionsCompleted = 0;
 function checkAnswer(answer, correctAnswer) {
     if(answer == correctAnswer){
         console.log("correct");
+        score++;
     }else{
         console.log("incorrect");
     }
@@ -200,6 +201,7 @@ function createMemoryQuestion(){
     function checkAnswer2(selectedOrientation, correctOrientation) {
         if (selectedOrientation === correctOrientation) {
             console.log('Correct! The image is in the correct orientation.');
+            score++;
         } else {
             console.log('Incorrect. Please try again.');
         }
@@ -269,6 +271,9 @@ function createMemoryQuestion(){
     let totalquestions3 = 0;
 
     function checkAnswer3(selectedAnswer, correctAnswer, newQuestionBox) {
+        if (selectedAnswer == correctAnswer){
+            score++;
+        }
         totalquestions3++;
         if (totalquestions3 < 3){
             newQuestionBox.innerHTML = '';
@@ -277,9 +282,17 @@ function createMemoryQuestion(){
             startQuestion4();
         }
     }
-
+    const scoretxt = document.getElementById("scoreTxt");
+    const question4div = document.getElementById("question4");
     function startQuestion4(){
         question3div.innerHTML = '';
+        scoretxt.style.display = 'block';
+        const scorebox = document.createElement('p');
+        scorebox.classList.add("score");
+        const finalscore = (score/10)*100;
+        scorebox.innerHTML = finalscore;
+        question4div.appendChild(scorebox);
+
 
     }
 
