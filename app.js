@@ -216,7 +216,7 @@ function createMemoryQuestion(){
     }
 
 
-    const items = ["bell", "spoon", "ring", "cat", "can"]
+    const items = ["bell", "spoon", "ring", "can", "cat"]
     const items_url = ["./assets/question3pic1.png","./assets/question3pic2.png","./assets/question3pic3.png","./assets/question3pic4.png","./assets/question3pic5.png"]
     const question3div = document.getElementById('question3');
     const nextq3 = document.createElement('button');
